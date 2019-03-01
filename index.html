@@ -5,9 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>实现简单vue</title>
-    <script src="Observer.js"></script>
+    <script src="observer.js"></script>
+    <script src="watcher.js"></script>
+    <script src="compile.js"></script>
+    <script src="myVue.js"></script>
 </head>
 <body>
+    <div id="app">
+        <h1 id="name">{{name}}</h1>
+    </div>
+    <script>
+        var myVue = new myVue({
+            el:'#app',
+            data:{
+                name:'第一次显示数据'
+            },
+            mounted:function(){
+                console.log('mounted!')
+            }
+        });
     
+        window.setTimeout(function(){
+            console.log('值变了');
+            myVue.name = '重新赋值了';
+        },2000);
+    </script>
 </body>
 </html>

@@ -3,3 +3,5 @@ Try to simulate the principle of Vue
 ### 思路
 #### 1.创建一个数据监听器，核心方法为Object.defineProperty()
 #### 2.创建一个可以容纳订阅者的消息订阅器，植入到数据监听器中
+#### 3.创建watcher订阅者
+#### 4.创建解析器Compile,来做解析和绑定工作

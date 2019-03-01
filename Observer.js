@@ -3,11 +3,13 @@
 // 核心方法
 function defineReactive(data,key,val){
     observer(val);// 这里用递归去遍历所有的子属性
-    var dep = new dep();// 实例化消息订阅器
+    var dep = new Dep();// 实例化消息订阅器
     Object.defineProperty(data,key,{
         enumerable:true, // 能否通过for-in循环返回属性
-        configurable:false,  // 能否通过delete删除属性从而重新定义属性
+        configurable:false,  // 能否通过delete删除属性从而重新定义属性，这里不允许
         get:function(){
+            // 在闭包内添加watcher，通过Dep定义一个全局target属性
+            Dep.target && dep.addSub(Dep.target);
             return val;
         },
         set:function(newVal){
